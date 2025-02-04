@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing Page Example</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Dancing+Script:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+      integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link href="src/output.css" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      h1 {
+        font-family: "Dancing Script", cursive;
+      }
+
+      body {
+        font-family: "Playfair Display", serif;
+        overflow-x: hidden;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("img/img2.jpg");
+        background-size: cover;
+        background-position: center;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 1;
+        transition: opacity 1s ease;
+      }
+      .overlay::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+      }
+
+      .overlay.hidden {
+        opacity: 0.5;
+        pointer-events: none;
+      }
+
+      .overlay-content {
+        text-align: center;
+        color: white;
+        z-index: 9999;
+      }
+
+      .fall {
+        animation: fall 0.5s forwards;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateY(0);
+        }
+        100% {
+          transform: translateY(100vh);
+        }
+      }
+
+      .main-content {
+        display: none;
+      }
+
+      button:focus {
+        outline: none;
+      }
+
+      .no-scroll {
+        overflow: hidden;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-800 mx-auto">
+    <!-- halaman awal -->
+    <div
+      id="overlay"
+      class="overlay flex items-center justify-center min-h-screen"
+    >
+      <div class="overlay-content text-center">
+        <h1 class="text-5xl sm:text-6xl md:text-7xl text-white mb-4 sm:mb-6">
+          Toriq & Bilqis
+        </h1>
+        <h2
+          class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-4 sm:mb-6 mt-6 sm:mt-8"
+        >
+          Kepada Yth.
+        </h2>
+        <p
+          id="guestName"
+          class="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-4 sm:mb-6"
+        ></p>
+        <h2
+          class="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 mt-4 sm:mt-6"
+        >
+          Mohon maaf apabila terdapat kesalahan nama/gelar
+        </h2>
+        <button
+          id="enterBtn"
+          class="px-4 sm:px-6 py-2 sm:py-3 bg-white text-black hover:bg-gray-100 rounded-xl mt-6"
+        >
+          <i class="fa-regular fa-envelope"></i> Lihat Undangan
+        </button>
+      </div>
+    </div>
+
+    <!-- Konten utama -->
+    <section id="home">
+      <!-- hero -->
+      <section
+        id="home"
+        class="bg-cover bg-center h-screen relative"
+        style="
+          background-image: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0),
+              rgba(229, 231, 235, 1)
+            ),
+            url('img/img6.jpg');
+        "
+      >
+        <div class="h-full flex items-center justify-center">
+          <div class="text-center text-black px-4">
+            <h2 class="text-lg sm:text-xl md:text-2xl font-bold mb-4">
+              THE WEDDING OF
+            </h2>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+              Toriq & Bilqis
+            </h1>
+            <p class="mt-4 text-lg sm:text-xl md:text-2xl">12.10.2024</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- konten 2 orang -->
+      <section id="mempelai" class="pt-20 pb-40 bg-gray-200">
+        <div class="container mx-auto text-center px-4 md:px-0">
+          <!-- menambahkan padding -->
+          <img src="img/bunga.png" alt="Bunga" class="mb-6 mx-auto w-24" />
+
+          <h2 class="text-4xl mb-6 text-yellow-600">Kedua Mempelai</h2>
+          <p class="text-md mb-28">
+            Dengan memohon Ridho serta Rahmat Allah SWT, kami bermaksud
+            menyelenggarakan acara pernikahan putra-putri kami
+          </p>
+          <div
+            class="flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-80"
+          >
+            <div
+              class="bg-gray-200 w-full md:w-1/4 h-auto mb-40 flex flex-col items-center"
+              data-aos="fade-right"
+              data-aos-duration="2000"
+            >
+              <div
+                class="mt-5 absolute left-3/4 transform -translate-x-72 md:-translate-x-48 -translate-y-1/4 text-4xl text-white z-10 bg-indigo-950 py-4"
+                style="
+                  writing-mode: vertical-rl;
+                  text-orientation: upright;
+                  letter-spacing: -0.1em;
+                "
+              >
+                <h2>Toriq</h2>
+              </div>
+
+              <img
+                src="img/img_lk.jpg"
+                alt=""
+                class="w-full h-[550px] object-cover"
+              />
+              <h2 class="text-4xl mt-6 text-yellow-600">Bagus Toriqul Aziz</h2>
+              <p class="mt-4 mb-4">Putra kedua dari tujuh bersaudara</p>
+              <p class="mt-4 mb-4">Bapak Zainuri</p>
+              <p
+                class="mt-4 mb-4"
+                style="font-family: 'Courier New', Courier, monospace"
+              >
+                &
+              </p>
+              <p class="mt-4 mb-4">Ibu Lilik Maslakhah</p>
+              <a href="">
+                <div
+                  class="bg-indigo-950 rounded-full w-10 h-10 flex items-center justify-center mx-auto"
+                >
+                  <i class="fa-brands fa-instagram text-xl text-white"></i>
+                </div>
+              </a>
+            </div>
+            <div
+              class="bg-gray-200 w-full md:w-1/4 h-auto mb-20 flex flex-col items-center"
+              data-aos="fade-left"
+              data-aos-duration="2000"
+            >
+              <div
+                class="mt-5 absolute left-3/4 transform translate-x-7 md:translate-x-0 -translate-y-1/4 text-4xl text-white z-10 bg-indigo-950 py-4"
+                style="
+                  writing-mode: vertical-rl;
+                  text-orientation: upright;
+                  letter-spacing: -0.1em;
+                "
+              >
+                <h2>Bilqis</h2>
+              </div>
+              <img
+                src="img/img_pr.jpg"
+                alt=""
+                class="w-full h-[550px] object-cover"
+              />
+              <h2 class="text-4xl mt-6 text-yellow-600">
+                Adinda Bilqis Ayu Nuriah
+              </h2>
+              <p class="mt-4 mb-4">Putri ketiga dari sepuluh bersaudara</p>
+              <p class="mt-4 mb-4">Bapak Aris Arinjaya</p>
+              <p
+                class="mt-4 mb-4"
+                style="font-family: 'Courier New', Courier, monospace"
+              >
+                &
+              </p>
+              <p class="mt-4 mb-4">Ibu Murtiatik</p>
+              <a href="">
+                <div
+                  class="bg-indigo-950 rounded-full w-10 h-10 flex items-center justify-center mx-auto"
+                >
+                  <i class="fa-brands fa-instagram text-xl text-white"></i>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- counting -->
+      <section id="about" class="pt-20 pb-20 bg-white relative">
+        <div
+          class="container mx-auto flex justify-center items-center space-x-10 px-4 md:px-8"
+        >
+          <!-- Gambar mempelai -->
+          <img
+            src="img/img4.jpg"
+            alt=""
+            class="w-52 h-auto rounded-t-full"
+            data-aos="slide-right"
+            data-aos-duration="2000"
+          />
+
+          <!-- Teks "Counting Days" -->
+          <div class="text-left" data-aos="slide-left" data-aos-duration="2000">
+            <p class="text-5xl mb-2 text-yellow-600">Counting Days</p>
+            <p class="text-lg">"Pernikahan seperti mozaik yang kita buat</p>
+            <p class="text-lg">dengan pasangan kita, jutaan momen kecil</p>
+            <p class="text-lg">yang menjadi kisah cinta."</p>
+          </div>
+        </div>
+
+        <!-- Countdown -->
+        <div
+          class="container mx-auto text-center mt-20 px-4 md:px-8"
+          data-aos="zoom-in"
+          data-aos-duration="2000"
+        >
+          <div
+            id="countdown"
+            class="flex justify-center space-x-10 md:space-x-36"
+          >
+            <div class="text-center">
+              <div id="days" class="text-xl md:text-2xl font-bold">0</div>
+              <div class="text-xl md:text-2xl">Hari</div>
+            </div>
+            <div class="text-center">
+              <div id="hours" class="text-xl md:text-2xl font-bold">0</div>
+              <div class="text-xl md:text-2xl">Jam</div>
+            </div>
+            <div class="text-center">
+              <div id="minutes" class="text-xl md:text-2xl font-bold">0</div>
+              <div class="text-xl md:text-2xl">Menit</div>
+            </div>
+            <div class="text-center">
+              <div id="seconds" class="text-xl md:text-2xl font-bold">0</div>
+              <div class="text-xl md:text-2xl">Detik</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- lokasi -->
+      <section id="event" class="pt-20 pb-20 bg-gray-100 relative">
+        <div class="container mx-auto text-center relative">
+          <img
+            src="img/bunga.png"
+            alt="Bunga"
+            class="mb-10 mx-auto w-24"
+            data-aos="zoom-in"
+            data-aos-duration="2000"
+          />
+
+          <!-- Flex container yang responsif -->
+          <div
+            class="flex flex-col md:flex-row justify-center space-x-0 md:space-x-80"
+          >
+            <div
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              class="mb-10 md:mb-0"
+            >
+              <p class="text-5xl mb-3 text-yellow-600">Akad Nikah</p>
+              <p class="text-lg mb-3">Sabtu, 12 Oktober 2024</p>
+              <p class="text-lg mb-3">08.00 WIB</p>
+              <p class="text-lg mb-3">Kediaman Mempelai Wanita</p>
+              <p class="text-lg">Dsn. Subentoro, Ds. Sumbermulyo,</p>
+              <p class="text-lg mb-10">Kec. Jogoroto, Kab. Jombang</p>
+              <a href="" class="bg-indigo-950 text-white px-6 py-2 rounded">
+                GOOGLE MAPS <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+            <div
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+              class="mb-10 md:mb-0"
+            >
+              <p class="text-5xl mb-3 text-yellow-600">Resepsi Nikah</p>
+              <p class="text-lg mb-3">Sabtu, 12 Oktober 2024</p>
+              <p class="text-lg mb-3">Rilex</p>
+              <p class="text-lg mb-3">Kediaman Mempelai Wanita</p>
+              <p class="text-lg">Dsn. Subentoro, Ds. Sumbermulyo,</p>
+              <p class="text-lg mb-10">Kec. Jogoroto, Kab. Jombang</p>
+              <a href="" class="bg-indigo-950 text-white px-6 py-2 rounded">
+                GOOGLE MAPS <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- surah -->
+      <section
+        id="home"
+        class="bg-cover bg-center h-screen relative"
+        style="
+          background-image: linear-gradient(
+              to bottom,
+              rgba(0, 0, 0, 0),
+              rgba(229, 231, 235, 1)
+            ),
+            url('img/img3.jpg');
+        "
+      >
+        <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+
+        <div class="h-full flex items-center justify-center relative z-10">
+          <div
+            class="text-center text-white text-xl mt-80"
+            data-aos="zoom-in"
+            data-aos-duration="2000"
+          >
+            <p class="px-4 text-sm md:text-xl">
+              "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan
+              pasangan-pasangan untukmu dari jenismu sendiri,
+            </p>
+            <p class="px-4 text-sm md:text-xl">
+              agar kamu cenderung dan merasa tenteram kepadanya, dan Dia
+              menjadikan di antaramu rasa kasih dan sayang. Sungguh,
+            </p>
+            <p class="px-4 text-sm md:text-xl">
+              pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran
+              Allah) bagi kaum yang berpikir."
+            </p>
+            <p class="mt-5 text-sm md:text-xl">QS. Ar-Rum ayat 21</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- our story -->
+      <section id="about" class="pt-20 pb-20 bg-gray-200">
+        <div class="container mx-auto text-center px-4 md:px-10">
+          <h2 class="text-6xl mb-6 text-yellow-600">Our Story</h2>
+          <div
+            class="flex flex-col md:flex-row justify-center space-x-0 md:space-x-10 space-y-10 md:space-y-0"
+          >
+            <div
+              class="w-full md:w-1/3 overflow-hidden"
+              data-aos="slide-right"
+              data-aos-duration="2000"
+            >
+              <img src="img/img5.jpg" alt="" class="w-full h-auto" />
+              <div class="p-6">
+                <h2 class="text-2xl font-bold">17 September 2023</h2>
+                <p class="mt-2 text-lg">Engagement Day</p>
+                <p class="mt-4">
+                  Kami telah melaksanakan hari engagement pada tanggal 17
+                  September 2023.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="w-full md:w-1/3 overflow-hidden"
+              data-aos="slide-left"
+              data-aos-duration="2000"
+            >
+              <img src="img/img6.jpg" alt="" class="w-full h-auto" />
+              <div class="p-6">
+                <h2 class="text-2xl font-bold">9 Mei 2024</h2>
+                <p class="mt-2 text-lg">Prewedding Day</p>
+                <p class="mt-4">
+                  Kami melangsungkan foto prewedding untuk membuat momen
+                  pernikahan kami semakin indah.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- galeri -->
+
+      <section id="galeri" class="pt-20 pb-20 bg-white">
+        <div class="container mx-auto text-center px-4 md:px-10">
+          <h2 class="text-7xl mb-6 text-yellow-600">Galeri Kami</h2>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 p-4">
+            <div class="group cursor-pointer relative col-span-1">
+              <img
+                src="img/img1.jpg"
+                alt="Image 1"
+                class="w-full h-60 object-cover"
+              />
+            </div>
+
+            <div class="group cursor-pointer relative col-span-1">
+              <img
+                src="img/img4.jpg"
+                alt="Image 2"
+                class="w-full h-60 object-cover"
+              />
+            </div>
+
+            <div class="group cursor-pointer relative col-span-1">
+              <img
+                src="img/img5.jpg"
+                alt="Image 3"
+                class="w-full h-60 object-cover"
+              />
+            </div>
+
+            <div class="group cursor-pointer relative col-span-1">
+              <img
+                src="img/img7.jpg"
+                alt="Image 4"
+                class="w-full h-60 object-cover"
+              />
+            </div>
+
+            <div class="group cursor-pointer relative col-span-2 lg:col-span-2">
+              <img
+                src="img/img2.jpg"
+                alt="Image 5"
+                class="w-full h-60 object-cover"
+              />
+            </div>
+
+            <div class="group cursor-pointer relative col-span-2 lg:col-span-3">
+              <img
+                src="img/img6.jpg"
+                alt="Image 6"
+                class="w-full h-60 object-cover"
+              />
+            </div>
+
+            <div class="group cursor-pointer relative col-span-2 lg:col-span-3">
+              <img
+                src="img/img3.jpg"
+                alt="Image 7"
+                class="w-full h-60 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- terimakasih -->
+      <section id="about" class="pt-20 pb-44 bg-gray-200">
+        <div class="container mx-auto text-center">
+          <h2 class="text-xl mb-6" data-aos="zoom-in" data-aos-duration="2000">
+            12 . 10 . 2024
+          </h2>
+          <div
+            class="h-0.5 bg-black w-80 mb-5 mx-auto"
+            data-aos="zoom-in"
+            data-aos-duration="2000"
+          ></div>
+
+          <div class="relative flex justify-center">
+            <div
+              class="mt-56 absolute left-[10%] md:left-1/3 mx-4 transform -translate-x-3.5 md:translate-x-3.5 -translate-y-1/2 text-6xl z-10 py-4"
+              style="
+                writing-mode: vertical-rl;
+                text-orientation: upright;
+                letter-spacing: -0.1em;
+              "
+            >
+              <h2 data-aos="fade-right" data-aos-duration="2000">TORIQ</h2>
+            </div>
+
+            <div
+              class="mt-56 absolute right-[10%] md:right-1/3 mx-4 transform translate-x-3.5 md:-translate-x-3.5 -translate-y-1/2 text-6xl z-10 py-4"
+              style="
+                writing-mode: vertical-rl;
+                text-orientation: upright;
+                letter-spacing: -0.1em;
+              "
+            >
+              <h2 data-aos="fade-left" data-aos-duration="2000">BILQIS</h2>
+            </div>
+
+            <img
+              src="img/img4.jpg"
+              alt=""
+              class="h-70 z-0 w-80 mx-auto"
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+            />
+          </div>
+
+          <div class="mt-5">
+            <p
+              class="text-lg md:max-w-xl mx-auto"
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+            >
+              Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila
+              Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu kepada
+              kami.
+            </p>
+            <p
+              class="text-xl mt-5 mx-4"
+              data-aos="zoom-in"
+              data-aos-duration="2000"
+            >
+              Terima Kasih.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- bottom navbar -->
+      <nav
+        class="fixed bottom-5 left-0 right-0 w-auto mx-auto bg-indigo-950 text-white shadow-lg rounded-lg p-3 z-10"
+        style="max-width: 90%"
+      >
+        <div class="flex justify-center space-x-16">
+          <a href="#home" class="flex flex-col items-center">
+            <i class="fa fa-home text-3xl"></i>
+            <span class="text-sm md:text-base">Home</span>
+          </a>
+          <a href="#mempelai" class="flex flex-col items-center">
+            <i class="fa-regular fa-heart text-3xl"></i>
+            <span class="text-sm md:text-base">Mempelai</span>
+          </a>
+          <a href="#event" class="flex flex-col items-center">
+            <i class="fa-solid fa-calendar-days text-3xl"></i>
+            <span class="text-sm md:text-base">Event</span>
+          </a>
+          <a href="#galeri" class="flex flex-col items-center">
+            <i class="fa-regular fa-image text-3xl"></i>
+            <span class="text-sm md:text-base">Galeri</span>
+          </a>
+          <a href="#ucapanSection" class="flex flex-col items-center">
+            <i class="fa-regular fa-message text-3xl"></i>
+            <span class="text-sm md:text-base">Ucapan</span>
+          </a>
+        </div>
+      </nav>
+
+      <style>
+        /*  */
+      </style>
+
+      <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+      <script>
+        AOS.init();
+      </script>
+
+      <script>
+        $(document).ready(function () {
+          var countDownDate = new Date("2025/3/20 00:00:00").getTime();
+
+          var countdownFunction = setInterval(function () {
+            var now = new Date().getTime();
+
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor(
+              (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            );
+            var minutes = Math.floor(
+              (distance % (1000 * 60 * 60)) / (1000 * 60)
+            );
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            $("#days").html(days);
+            $("#hours").html(hours);
+            $("#minutes").html(minutes);
+            $("#seconds").html(seconds);
+
+            if (distance < 0) {
+              clearInterval(countdownFunction);
+              $("#countdown").html("The big day has arrived!");
+            }
+          }, 1000);
+        });
+      </script>
+    </section>
+
+    <audio id="backgroundMusic" src="img/song.mp3" preload="auto"></audio>
+
+    <script>
+      $(document).ready(function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get("to");
+
+        if (guestName) {
+          $("#guestName").text(guestName);
+        } else {
+          $("#guestName").text("Tamu Terhormat");
+        }
+
+        $("#enterBtn").click(function () {
+          $("#overlay").addClass("fall");
+          $("#backgroundMusic")[0].play();
+
+          setTimeout(function () {
+            $("#overlay").addClass("hidden");
+            $(".main-content").fadeIn(1000);
+          }, 500);
+        });
+      });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      // untuk transisi pas awal
+      $(document).ready(function () {
+        $("body").addClass("no-scroll");
+
+        $("#enterBtn").on("click", function () {
+          $("#overlay").fadeOut();
+          $("body").removeClass("no-scroll");
+        });
+      });
+    </script>
+  </body>
+</html>
